@@ -1,6 +1,57 @@
+import { useContext, useState } from "react";
 import { Helmet } from "react-helmet";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Authprovider/Authprovider";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Registration = () => {
+    const navigate = useNavigate()
+    const { createUser, setUser,UpdateUser } = useContext(AuthContext);
+    const [registerError, setRegisterError] = useState("");
+    const [showPassword, setShowpassword] = useState(false);
+    const handelarRegester = e => {
+        e.preventDefault()
+        const form = e.target
+        const name = form.name.value
+        const email = form.email.value
+        const photoUrl = form.photoUrl.value
+        const password = form.password.value
+        console.log(name, photoUrl)
+
+        if (password.length < 6) {
+            setRegisterError("Password should be at least 6 characters");
+            return;
+        } else if (!/[A-Z]/.test(password)) {
+            setRegisterError("Password must contain at least one capital letter");
+            return;
+        }
+        else if (!/[a-z]/.test(password)) {
+            setRegisterError("Password must contain at least one Small letter");
+            return;
+        }
+        // create user
+        createUser(email, password)
+  
+        .then((result) => {
+          console.log(result)
+          UpdateUser(
+            name,photoUrl
+          ).then(() => {
+            toast.success("Registration successful!");
+            setUser({displayName:name,photoURL:photoUrl});
+            navigate('/')
+          }).catch((error) => {
+            setRegisterError(error.message);
+          });
+        })
+        .catch((error) => {
+          setRegisterError('Email Already exist',error.message);
+        });
+    }
+
     return (
         <div className="">
         <Helmet><title>Regestration</title></Helmet>

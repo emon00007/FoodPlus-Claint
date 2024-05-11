@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { CgProfile } from "react-icons/cg";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../Authprovider/Authprovider";
 
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext)
     const [theme,setTheme]=useState(localStorage.getItem('theme')?localStorage.getItem('theme'):'light')
     const handleToggle = e => {
    
@@ -19,6 +22,17 @@ const Navbar = () => {
         // add custom data-theme attribute
         document.querySelector('html').setAttribute('data-theme', localTheme)
       }, [theme])
+
+      const handelSignOut = () => {
+    
+        logOut()
+          .then(result => {
+            console.log(result)
+          })
+          .catch(error => {
+            console.error(error)
+          })
+      }
       const links = <>
       <li><NavLink to='/'>Home</NavLink></li>
       <li><NavLink to='/AvailableFoods'>Available Foods</NavLink></li>
@@ -64,15 +78,14 @@ const Navbar = () => {
                           <svg className="swap-on fill-current w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" /></svg>
   
                       </label>
-            {/* <div className="w-10 h-10 rounded-full  md:me2 lg:mr-4 tooltip tooltip-left "data-tip={user?.displayName}>
+            <div className="w-10 h-10 rounded-full  md:me2 lg:mr-4 tooltip tooltip-left "data-tip={user?.displayName}>
             {user && <img className="w-16 h-10 rounded-full "  alt="#" src={user.photoURL } />|| <CgProfile className="text-3xl"></CgProfile> }
-            </div> */}
+            </div>
           </div>
-          
-         
-              <Link to="/login"  className="btn">Sign Out</Link> : <Link to="/login" className="btn">Log in</Link>
-         
-          
+          {
+          user ?
+            <Link to="/login" onClick={handelSignOut} className="btn">Sign Out</Link> : <Link to="/login" className="btn">Log in</Link>
+        }
   
         </div>
         </div>

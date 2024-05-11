@@ -1,8 +1,67 @@
+import { getAuth, signInWithPopup } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import app from "../../Firebase/Firebase";
+import { AuthContext } from "../../Authprovider/Authprovider";
 
 const LogIn = () => {
+    const navigate =useNavigate()
+    const {signIn}=useContext(AuthContext)
+    const auth = getAuth(app)
+    const googProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
+    
+    const handelLogin = e => {
+        // navigate('/')
+        e.preventDefault()
+        console.log('yeah hu hu')
+        console.log(e.currentTarget)
+        const form = new FormData(e.currentTarget)
+        const email = form.get('email')
+        const password = form.get('password')
+        console.log(email, password)
+        signIn(email, password)
+          .then(result => {
+            toast.success("Login successful!");
+            console.log(result.user)
+            navigate(location?.state?location.state:"/")
+          })
+          .catch(error => {
+            console.error(error)
+          })
+      }
+
+      const handleGithubSignIn = async () => {
+        try {
+          const result = await signInWithPopup(auth, githubProvider);
+          const user = result.user;
+          console.log(user);
+          toast.success('Sign in successful!');
+          setTimeout(() => {
+            navigate(location?.state ? location.state : "/");
+          }, 1000);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+      const handleGoogleSignIn = async () => {
+        try {
+          const result = await signInWithPopup(auth, googProvider);
+          const user = result.user;
+          console.log(user);
+          toast.success('Sign in successful!');
+          setTimeout(() => {
+            navigate(location?.state ? location.state : "/");
+          }, 1000);
+        } catch (error) {
+          console.error(error);
+        }
+      }
     return (
         <div>
         <Helmet><title>Login</title></Helmet>
@@ -12,7 +71,7 @@ const LogIn = () => {
           <div className="hero ">
   
             <div className="card shrink-0  lg:w-2/5 mx-auto  shadow-2xl bg-base-100">
-            <form    className="card-body">
+            <form  onSubmit={handelLogin}  className="card-body">
 
               <div className="form-control">
                 <label className="label">
@@ -44,8 +103,8 @@ const LogIn = () => {
             </form>
               
               <div className="p-5 flex justify-around gap-4 lg:flex-row md:flex-col flex-col">
-                <button className="btn  btn-ghost border border-black "  ><FaGoogle className="text-2xl"></FaGoogle>LogIn with Google </button>
-                <button className="btn btn-ghost border border-black "  ><FaGithub className="text-2xl"></FaGithub>LogIn with Github </button>
+                <button onClick={handleGoogleSignIn} className="btn  btn-ghost border border-black "  ><FaGoogle className="text-2xl"></FaGoogle>LogIn with Google </button>
+                <button onClick={handleGithubSignIn} className="btn btn-ghost border border-black "  ><FaGithub className="text-2xl"></FaGithub>LogIn with Github </button>
               </div>
               <div className="text-center py-5"><p>Do not Have an Account <Link className="text-blue-600" to="/register">Regester</Link></p></div>
             </div>
