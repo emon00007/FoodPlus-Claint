@@ -53,7 +53,7 @@ const Navbar = () => {
             <ul tabIndex={0} className="menu z-50 menu-sm dropdown-content mt-3  p-2 shadow bg-base-100 rounded-box w-52">
               {links}
             </ul>
-          </div> <img className=" w-20 h-20 hidden md:block lg:block rounded-lg" src={'https://i.ibb.co/Jt6Vk51/foodsharegr-logo.jpg'} alt="" />
+          </div> <img className=" w-24 h-20 hidden md:block lg:block rounded-lg" src={'https://i.ibb.co/Dz9SRnb/foodsharegr-logooo.jpg'} alt="" />
           <a className=" text-2xl font-bold">FoodShare <span className="text-amber-400"> Plus</span></a>
         </div>
         <div className="navbar-center hidden lg:flex">
