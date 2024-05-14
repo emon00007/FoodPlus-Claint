@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { AuthContext } from "../../Authprovider/Authprovider";
+import swal from "sweetalert";
 
 const AddFood = () => {
     const { user } = useContext(AuthContext)
@@ -45,11 +46,11 @@ const AddFood = () => {
             .then(data => {
                 console.log(data)
                 if (data.insertedId)
-                    Swal.fire({
+                    swal({
                         title: "success",
                         text: "Do you want to continue",
                         icon: "success",
-                        confirmButtonText: "Cool",
+                        confirmButtonText: "Continue",
                     });
 
             })

@@ -1,11 +1,65 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { HiOutlineMailOpen } from "react-icons/hi";
+import { AuthContext } from "../../Authprovider/Authprovider";
+import moment from 'moment';
+import { toast } from "react-toastify";
+import swal from "sweetalert";
 
 
 const FoodDetails = () => {
+    const { user } = useContext(AuthContext)
     const { id } = useParams();
+    const currentTime = moment().format("MMM Do YY");
     const [foodDetails, setFoodDetails] = useState({});
+
+// const HandelAddfood2 =e=>{
+//     e.preventDefault
+// }
+    const handelUpdate =(e)=>{
+        e.preventDefault();
+        const form = e.target;
+        const AdditionalNotes = form.AdditionalNotes.value;
+        const RequestDate = form.RequestDate.value;
+        const requesrUseremail = user ? user.email : "Unknown";
+        
+        const updatenotes ={
+            AdditionalNotes,
+            RequestDate,
+            requesrUseremail
+
+        }
+        console.log(AdditionalNotes,
+            RequestDate
+        )
+        fetch(`http://localhost:5000/updatePost/${id}`,{
+            method:'PUT',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(updatenotes)
+
+        })
+        .then(res=>res.json())
+        .then(data=>{console.log(data)
+            if(data.insertedId)
+            toast.success("Update successful!");
+            swal({
+                title: "Are you sure?",
+                text: "Are you sure that you want to food Request ",
+                icon: "success",
+                confirmButtonText: "Continue",
+              })
+            
+        })
+        e.target.reset()
+    }
+    // if (foodDetails.FoodQuantity>0){
+    //     'avilable'
+    // }
+    // else{
+    //     'unavilable'
+    // }
 
     useEffect(() => {
         fetch(`http://localhost:5000/FoodDetails/${id}`)
@@ -18,6 +72,7 @@ const FoodDetails = () => {
     return (
 
         <div>
+            
             <div className="flex items-center md:flex-row flex-col gap-2 ">
                 <div className="w-1/2">
                     <img className="md:w-[400px] mx-auto rounded-2xl shadow-2xl sh" src={foodDetails?.FoodPhotoUrl} alt="" />
@@ -57,7 +112,7 @@ const FoodDetails = () => {
 
 
             <div className="modal h-[700px]" role="dialog" id="my_modal_8">
-                <div className="modal-box">
+                <form onSubmit={handelUpdate} className="modal-box">
                     <div>
                     <label className="label">
                         <span className="font-bold">FoodQuantity</span>
@@ -66,7 +121,9 @@ const FoodDetails = () => {
                         className="input input-bordered join-item w-full mb-4"
                         name="FoodQuantity"
                         placeholder="FoodQuantity"
+                        value={foodDetails?.FoodQuantity}
                         type="number"
+                        readOnly
                     />
                     </div>
                     <div>
@@ -76,8 +133,9 @@ const FoodDetails = () => {
                     <input
                         className="input input-bordered join-item w-full mb-4"
                         name="FoodImageURL"
-                        placeholder="FoodImage URL"
+                        value={foodDetails?.FoodPhotoUrl}
                         type="text"
+                        readOnly
                     />
                     </div>
                     <div>
@@ -87,8 +145,9 @@ const FoodDetails = () => {
                     <input
                         className="input input-bordered join-item w-full mb-4"
                         name=" FoodId"
-                        placeholder=" Food Id "
-                        type="number"
+                        value={foodDetails?._id}
+                        type="text"
+                        readOnly
                     />
                     </div>
                     <div>
@@ -98,8 +157,9 @@ const FoodDetails = () => {
                     <input
                         className="input input-bordered join-item w-full mb-4"
                         name="email"
-                        placeholder="FoodDonator email"
+                        value={foodDetails?.email}
                         type="text"
+                        readOnly
                     />
                     </div>
                     <div>
@@ -109,8 +169,9 @@ const FoodDetails = () => {
                     <input
                         className="input input-bordered join-item w-full mb-4"
                         name="Name"
-                        placeholder=" FoodDonator Name"
+                        value={foodDetails?.userName}
                         type="text"
+                        readOnly
                     />
                     </div>
                     <div>
@@ -120,8 +181,9 @@ const FoodDetails = () => {
                     <input
                         className="input input-bordered join-item w-full mb-4"
                         name=" Useremail "
-                        placeholder=" User Email "
+                        value={user?.email}
                         type="text"
+                        readOnly
                     />
                     </div>
                     <div>
@@ -130,10 +192,12 @@ const FoodDetails = () => {
                     </label>
                     <input
                         className="input input-bordered join-item w-full mb-4"
-                        name=" RequestDate"
-                        placeholder=" Request Date"
+                        name="RequestDate"
+                        value ={currentTime}
                         required
-                        type="date"
+                        // readOnly
+        
+                        
                     />
                     </div>
                     <div>
@@ -143,7 +207,8 @@ const FoodDetails = () => {
                     <input
                         className="input input-bordered join-item w-full mb-4"
                         name=" PickupLocation"
-                        placeholder=" Pickup Location"
+                        value={foodDetails?.PickupLocation}
+                        readOnly
                         type="text"
                     />
                     <label className="label">
@@ -152,23 +217,30 @@ const FoodDetails = () => {
                     <input
                         className="input input-bordered join-item w-full mb-4"
                         name="  ExpireDate"
-                        placeholder="  Expire Date"
-                        type="date"
+                        value={foodDetails?.date}
+                        readOnly
                     />
+
+                    </div>
+                    <div>
                     <label className="label">
                         <span className="font-bold"> Additional Notes </span>
                     </label>
                     <input
                         className="input input-bordered join-item w-full mb-4"
-                        name=" AdditionalNotes "
-                        placeholder=" Additional Notes "
+                        name="AdditionalNotes"
+                        placeholder="Additional Notes"
                         type="text"
-                        readOnly
                         
                     />
                     </div>
-                    <Link className="btn mt-3 w-full bg-[#00ffa6]">REquesting Food</Link>
-                </div>
+                    <input type="submit" 
+className="btn mt-3 w-full bg-[#00ffa6]"
+                    value="Requesting Food"
+                    />
+                    {/* <input ></input> */}
+                </form>
+                
             </div>
 
         </div>
