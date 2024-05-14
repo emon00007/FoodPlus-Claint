@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { HiOutlineMailOpen } from "react-icons/hi";
+
 
 const FoodDetails = () => {
     const { id } = useParams();
@@ -16,31 +18,159 @@ const FoodDetails = () => {
     return (
 
         <div>
-            <div className="max-w-md p-8 sm:flex sm:space-x-6 dark:bg-gray-50 dark:text-gray-800">
-                <div className="flex-shrink-0 w-full mb-6 h-44 sm:h-32 sm:w-32 sm:mb-0">
-                    <img src={foodDetails?.photoURL} alt="" className="object-cover object-center w-full h-full rounded dark:bg-gray-500" />
+            <div className="flex items-center md:flex-row flex-col gap-2 ">
+                <div className="w-1/2">
+                    <img className="md:w-[400px] mx-auto rounded-2xl shadow-2xl sh" src={foodDetails?.FoodPhotoUrl} alt="" />
                 </div>
-                <div className="flex flex-col space-y-4">
-                    <div>
-                        <h2 className="text-2xl font-semibold">Leroy Jenkins</h2>
-                        <span className="text-sm dark:text-gray-600">General manager</span>
+                <div className="w-1/2  border mr-3 rounded-xl p-4 shadow-2xl">
+                    <div className=" border mr-3 rounded-xl p-4 shadow-2xl">
+                        <h1 className="text-2xl font-medium ">FoodName:{foodDetails?.FoodName}</h1>
+                        <p className="font-medium mt-3">FoodQuantity:  {foodDetails?.FoodQuantity}</p>
+                        <p className="font-medium mt-3">Expired Date:{foodDetails?.date}</p>
+                        <a href="#my_modal_8"><button to={'/CookingRequest'} className="btn mt-3 bg-[#00ffa6]">Request food</button></a>
                     </div>
-                    <div className="space-y-1">
-                        <span className="flex items-center space-x-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="Email address" className="w-4 h-4">
-                                <path fill="currentColor" d="M274.6,25.623a32.006,32.006,0,0,0-37.2,0L16,183.766V496H496V183.766ZM464,402.693,339.97,322.96,464,226.492ZM256,51.662,454.429,193.4,311.434,304.615,256,268.979l-55.434,35.636L57.571,193.4ZM48,226.492,172.03,322.96,48,402.693ZM464,464H48V440.735L256,307.021,464,440.735Z"></path>
-                            </svg>
-                            <span className="dark:text-gray-600">leroy.jenkins@company.com</span>
-                        </span>
-                        <span className="flex items-center space-x-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="Phonenumber" className="w-4 h-4">
-                                <path fill="currentColor" d="M449.366,89.648l-.685-.428L362.088,46.559,268.625,171.176l43,57.337a88.529,88.529,0,0,1-83.115,83.114l-57.336-43L46.558,362.088l42.306,85.869.356.725.429.684a25.085,25.085,0,0,0,21.393,11.857h22.344A327.836,327.836,0,0,0,461.222,133.386V111.041A25.084,25.084,0,0,0,449.366,89.648Zm-20.144,43.738c0,163.125-132.712,295.837-295.836,295.837h-18.08L87,371.76l84.18-63.135,46.867,35.149h5.333a120.535,120.535,0,0,0,120.4-120.4v-5.333l-35.149-46.866L371.759,87l57.463,28.311Z"></path>
-                            </svg>
-                            <span className="dark:text-gray-600">+25 381 77 983</span>
-                        </span>
+                    <div className=" mt-10  border mr-3 rounded-xl p-4 shadow-2xl">
+                        <h3 className="text-2xl font-medium mb-4">Donner Information</h3>
+                        <div className="max-w-[500px]   sm:flex sm:space-x-6 dark:bg-gray-50 dark:text-gray-800">
+
+                            <div className="flex-shrink-0 w-full mb-6 h-44 sm:h-32 sm:w-32 sm:mb-0">
+                                <img src={foodDetails?.photoURL} alt="" className="object-cover object-center w-full h-full rounded dark:bg-gray-500" />
+                            </div>
+                            <div className="flex flex-col space-y-4">
+                                <div>
+                                    <h2 className="text-2xl font-semibold">{foodDetails?.userName}</h2>
+                                    <span className="text-sm font-medium dark:text-gray-600">PickUp Location : {foodDetails?.PickupLocation}</span>
+                                </div>
+                                <div className="space-y-1">
+                                    <span className="flex items-center space-x-2">
+                                        <HiOutlineMailOpen />
+                                        <span className="dark:text-gray-600">{foodDetails?.email}</span>
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
+
+            <div className="modal h-[700px]" role="dialog" id="my_modal_8">
+                <div className="modal-box">
+                    <div>
+                    <label className="label">
+                        <span className="font-bold">FoodQuantity</span>
+                    </label>
+                    <input
+                        className="input input-bordered join-item w-full mb-4"
+                        name="FoodQuantity"
+                        placeholder="FoodQuantity"
+                        type="number"
+                    />
+                    </div>
+                    <div>
+                    <label className="label">
+                        <span className="font-bold">FoodImage URL</span>
+                    </label>
+                    <input
+                        className="input input-bordered join-item w-full mb-4"
+                        name="FoodImageURL"
+                        placeholder="FoodImage URL"
+                        type="text"
+                    />
+                    </div>
+                    <div>
+                    <label className="label">
+                        <span className="font-bold"> FoodId</span>
+                    </label>
+                    <input
+                        className="input input-bordered join-item w-full mb-4"
+                        name=" FoodId"
+                        placeholder=" Food Id "
+                        type="number"
+                    />
+                    </div>
+                    <div>
+                    <label className="label">
+                        <span className="font-bold">FoodDonator email</span>
+                    </label>
+                    <input
+                        className="input input-bordered join-item w-full mb-4"
+                        name="email"
+                        placeholder="FoodDonator email"
+                        type="text"
+                    />
+                    </div>
+                    <div>
+                    <label className="label">
+                        <span className="font-bold"> FoodDonator Name</span>
+                    </label>
+                    <input
+                        className="input input-bordered join-item w-full mb-4"
+                        name="Name"
+                        placeholder=" FoodDonator Name"
+                        type="text"
+                    />
+                    </div>
+                    <div>
+                    <label className="label">
+                        <span className="font-bold"> User Email </span>
+                    </label>
+                    <input
+                        className="input input-bordered join-item w-full mb-4"
+                        name=" Useremail "
+                        placeholder=" User Email "
+                        type="text"
+                    />
+                    </div>
+                    <div>
+                    <label className="label">
+                        <span className="font-bold"> Request Date</span>
+                    </label>
+                    <input
+                        className="input input-bordered join-item w-full mb-4"
+                        name=" RequestDate"
+                        placeholder=" Request Date"
+                        required
+                        type="date"
+                    />
+                    </div>
+                    <div>
+                    <label className="label">
+                        <span className="font-bold"> Pickup Location</span>
+                    </label>
+                    <input
+                        className="input input-bordered join-item w-full mb-4"
+                        name=" PickupLocation"
+                        placeholder=" Pickup Location"
+                        type="text"
+                    />
+                    <label className="label">
+                        <span className="font-bold"> Expire Date</span>
+                    </label>
+                    <input
+                        className="input input-bordered join-item w-full mb-4"
+                        name="  ExpireDate"
+                        placeholder="  Expire Date"
+                        type="date"
+                    />
+                    <label className="label">
+                        <span className="font-bold"> Additional Notes </span>
+                    </label>
+                    <input
+                        className="input input-bordered join-item w-full mb-4"
+                        name=" AdditionalNotes "
+                        placeholder=" Additional Notes "
+                        type="text"
+                        readOnly
+                        
+                    />
+                    </div>
+                    <Link className="btn mt-3 w-full bg-[#00ffa6]">REquesting Food</Link>
+                </div>
+            </div>
+
         </div>
     );
 };
