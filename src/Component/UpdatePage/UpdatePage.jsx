@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import swal from "sweetalert";
 import { AuthContext } from "../../Authprovider/Authprovider";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdatePage = () => {
-
+    const navigate = useNavigate()
     const { user } = useContext(AuthContext)
+    const { id } = useParams();
     const handelUpdate = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -30,8 +32,8 @@ const UpdatePage = () => {
             time,
             date
         };
-        fetch('http://localhost:5000/foodSharePlusSarver', {
-            method: 'POST',
+        fetch(`http://localhost:5000/updatePostManage/${id}`, {
+            method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
@@ -51,6 +53,7 @@ const UpdatePage = () => {
 
             })
         e.target.reset()
+        navigate('/')
         console.log(updateFoodData);
     }
     return (

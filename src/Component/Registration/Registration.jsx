@@ -41,7 +41,7 @@ const Registration = () => {
             name,photoUrl
           ).then(() => {
             toast.success("Registration successful!");
-            setUser({displayName:name,photoURL:photoUrl});
+            setUser({displayName:name,photoURL:photoUrl,email:email});
             navigate('/')
           }).catch((error) => {
             setRegisterError(error.message);

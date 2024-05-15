@@ -88,7 +88,7 @@ const ManageMyFoods = () => {
                                         </td>
                                         <td className="px-3 py-2">
                                         
-                                        <Link to={`/UpdatePost/${p._id}`}><button className="btn bg-[#00ffa6]">Update Spot</button></Link>
+                                        <Link to={`/updatePostManage/${p._id}`}><button className="btn bg-[#00ffa6]">Update Spot</button></Link>
                                         <Link ><button onClick ={()=>handelDelete(p._id)}className="btn bg-[#00ffa6]">Delete Spot</button></Link>
                                         </td>
                                     </tr>

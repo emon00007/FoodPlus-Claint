@@ -5,6 +5,7 @@ import swal from "sweetalert";
 
 const AddFood = () => {
     const { user } = useContext(AuthContext)
+    console.log(user?.email)
     const handelAddFood = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -60,10 +61,10 @@ const AddFood = () => {
 
     return (
 
-        <div>
+        <div className="bg-cover bg-no-repeat " style={{backgroundImage: 'url("https://i.ibb.co/Hnjc1bv/gettyimages-1263686908.jpg")'}} >
             <Helmet>AddFood</Helmet>
-            <div className=" p-10">
-                <form onSubmit={handelAddFood} className="bg-[#FFFF] shadow-lg rounded-lg mt-8 p-4">
+            <div className=" p-10  dark:text-white">
+                <form onSubmit={handelAddFood} className="bg-transparent  bg-white bg-opacity-50 shadow-lg rounded-lg mt-8 p-4">
                     <h1 className="font-bold text-4xl text-center ">
                         Add Food
                     </h1>
@@ -229,7 +230,7 @@ const AddFood = () => {
                             <span className="font-bold">User Information</span>
 
                             <div className="md:flex items-center gap-5 ">
-                                <img className="w-20  rounded-full" src={user?.photoURL} alt="" />
+                                <img className="w-20 h-20  rounded-full" src={user?.photoURL} alt="" />
                                 <div >
                                     <p className="text-xl font-medium">{user?.email}</p>
                                     <p className="text-xl font-medium">{user?.displayName}</p>
