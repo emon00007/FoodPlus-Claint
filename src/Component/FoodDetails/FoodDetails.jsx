@@ -60,12 +60,7 @@ const FoodDetails = () => {
             navigate('/')
         e.target.reset()
     }
-    // if (foodDetails.FoodQuantity>0){
-    //     'avilable'
-    // }
-    // else{
-    //     'unavilable'
-    // }
+
 
     useEffect(() => {
         fetch(`http://localhost:5000/FoodDetails/${id}`)
