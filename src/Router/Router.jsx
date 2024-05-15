@@ -7,6 +7,8 @@ import Registration from "../Component/Registration/Registration";
 import Homes from "../Component/Homes/Homes";
 import AddFood from "../Component/AddFood/AddFood";
 import FoodDetails from "../Component/FoodDetails/FoodDetails";
+import AvailableFoods from "../Component/AvailableFoods/AvailableFoods";
+import ManageMyFoods from "../Component/ManageMyFoods/ManageMyFoods";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
       {
         path:"/FoodDetails/:id",
         element:<FoodDetails></FoodDetails>
+      },
+      {path:"/AvailableFoods",
+      element:<AvailableFoods></AvailableFoods>
+
+      },
+      {
+        path:"/ManageMyFoods",
+        element:<ManageMyFoods></ManageMyFoods>
       }
     ]
 

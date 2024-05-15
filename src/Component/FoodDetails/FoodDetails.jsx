@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { HiOutlineMailOpen } from "react-icons/hi";
 import { AuthContext } from "../../Authprovider/Authprovider";
 import moment from 'moment';
@@ -8,22 +8,23 @@ import swal from "sweetalert";
 
 
 const FoodDetails = () => {
+    const navigate = useNavigate()
     const { user } = useContext(AuthContext)
     const { id } = useParams();
     const currentTime = moment().format("MMM Do YY");
     const [foodDetails, setFoodDetails] = useState({});
 
-// const HandelAddfood2 =e=>{
-//     e.preventDefault
-// }
-    const handelUpdate =(e)=>{
+    // const HandelAddfood2 =e=>{
+    //     e.preventDefault
+    // }
+    const handelUpdate = (e) => {
         e.preventDefault();
         const form = e.target;
         const AdditionalNotes = form.AdditionalNotes.value;
         const RequestDate = form.RequestDate.value;
         const requesrUseremail = user ? user.email : "Unknown";
-        
-        const updatenotes ={
+
+        const updatenotes = {
             AdditionalNotes,
             RequestDate,
             requesrUseremail
@@ -32,26 +33,29 @@ const FoodDetails = () => {
         console.log(AdditionalNotes,
             RequestDate
         )
-        fetch(`http://localhost:5000/updatePost/${id}`,{
-            method:'PUT',
-            headers:{
-                'content-type':'application/json'
+        fetch(`http://localhost:5000/updatePost/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
             },
-            body:JSON.stringify(updatenotes)
+            body: JSON.stringify(updatenotes)
 
         })
-        .then(res=>res.json())
-        .then(data=>{console.log(data)
-            if(data.insertedId)
-            toast.success("Update successful!");
-            swal({
-                title: "Are you sure?",
-                text: "Are you sure that you want to food Request ",
-                icon: "success",
-                confirmButtonText: "Continue",
-              })
-            
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.insertedId)
+                    toast.success("Update successful!");
+                swal({
+                    title: "success",
+                    text: "Your request confirmed",
+                    icon: "success",
+                    confirmButtonText: "Continue",
+                    
+                })
+                
+            })
+            navigate('/')
         e.target.reset()
     }
     // if (foodDetails.FoodQuantity>0){
@@ -72,7 +76,7 @@ const FoodDetails = () => {
     return (
 
         <div>
-            
+
             <div className="flex items-center md:flex-row flex-col gap-2 ">
                 <div className="w-1/2">
                     <img className="md:w-[400px] mx-auto rounded-2xl shadow-2xl sh" src={foodDetails?.FoodPhotoUrl} alt="" />
@@ -114,133 +118,135 @@ const FoodDetails = () => {
             <div className="modal h-[700px]" role="dialog" id="my_modal_8">
                 <form onSubmit={handelUpdate} className="modal-box">
                     <div>
-                    <label className="label">
-                        <span className="font-bold">FoodQuantity</span>
-                    </label>
-                    <input
-                        className="input input-bordered join-item w-full mb-4"
-                        name="FoodQuantity"
-                        placeholder="FoodQuantity"
-                        value={foodDetails?.FoodQuantity}
-                        type="number"
-                        readOnly
-                    />
+                        <label className="label">
+                            <span className="font-bold">FoodQuantity</span>
+                        </label>
+                        <input
+                            className="input input-bordered join-item w-full mb-4"
+                            name="FoodQuantity"
+                            placeholder="FoodQuantity"
+                            value={foodDetails?.FoodQuantity}
+                            type="number"
+                            readOnly
+                        />
                     </div>
                     <div>
-                    <label className="label">
-                        <span className="font-bold">FoodImage URL</span>
-                    </label>
-                    <input
-                        className="input input-bordered join-item w-full mb-4"
-                        name="FoodImageURL"
-                        value={foodDetails?.FoodPhotoUrl}
-                        type="text"
-                        readOnly
-                    />
+                        <label className="label">
+                            <span className="font-bold">FoodImage URL</span>
+                        </label>
+                        <input
+                            className="input input-bordered join-item w-full mb-4"
+                            name="FoodImageURL"
+                            value={foodDetails?.FoodPhotoUrl}
+                            type="text"
+                            readOnly
+                        />
                     </div>
                     <div>
-                    <label className="label">
-                        <span className="font-bold"> FoodId</span>
-                    </label>
-                    <input
-                        className="input input-bordered join-item w-full mb-4"
-                        name=" FoodId"
-                        value={foodDetails?._id}
-                        type="text"
-                        readOnly
-                    />
+                        <label className="label">
+                            <span className="font-bold"> FoodId</span>
+                        </label>
+                        <input
+                            className="input input-bordered join-item w-full mb-4"
+                            name=" FoodId"
+                            value={foodDetails?._id}
+                            type="text"
+                            readOnly
+                        />
                     </div>
                     <div>
-                    <label className="label">
-                        <span className="font-bold">FoodDonator email</span>
-                    </label>
-                    <input
-                        className="input input-bordered join-item w-full mb-4"
-                        name="email"
-                        value={foodDetails?.email}
-                        type="text"
-                        readOnly
-                    />
+                        <label className="label">
+                            <span className="font-bold">FoodDonator email</span>
+                        </label>
+                        <input
+                            className="input input-bordered join-item w-full mb-4"
+                            name="email"
+                            value={foodDetails?.email}
+                            type="text"
+                            readOnly
+                        />
                     </div>
                     <div>
-                    <label className="label">
-                        <span className="font-bold"> FoodDonator Name</span>
-                    </label>
-                    <input
-                        className="input input-bordered join-item w-full mb-4"
-                        name="Name"
-                        value={foodDetails?.userName}
-                        type="text"
-                        readOnly
-                    />
+                        <label className="label">
+                            <span className="font-bold"> FoodDonator Name</span>
+                        </label>
+                        <input
+                            className="input input-bordered join-item w-full mb-4"
+                            name="Name"
+                            value={foodDetails?.userName}
+                            type="text"
+                            readOnly
+                        />
                     </div>
                     <div>
-                    <label className="label">
-                        <span className="font-bold"> User Email </span>
-                    </label>
-                    <input
-                        className="input input-bordered join-item w-full mb-4"
-                        name=" Useremail "
-                        value={user?.email}
-                        type="text"
-                        readOnly
-                    />
+                        <label className="label">
+                            <span className="font-bold"> User Email </span>
+                        </label>
+                        <input
+                            className="input input-bordered join-item w-full mb-4"
+                            name=" Useremail "
+                            value={user?.email}
+                            type="text"
+                            readOnly
+                        />
                     </div>
                     <div>
-                    <label className="label">
-                        <span className="font-bold"> Request Date</span>
-                    </label>
-                    <input
-                        className="input input-bordered join-item w-full mb-4"
-                        name="RequestDate"
-                        value ={currentTime}
-                        required
+                        <label className="label">
+                            <span className="font-bold"> Request Date</span>
+                        </label>
+                        <input
+                            className="input input-bordered join-item w-full mb-4"
+                            name="RequestDate"
+                            value={currentTime}
+                            required
                         // readOnly
-        
-                        
-                    />
+
+
+                        />
                     </div>
                     <div>
-                    <label className="label">
-                        <span className="font-bold"> Pickup Location</span>
-                    </label>
-                    <input
-                        className="input input-bordered join-item w-full mb-4"
-                        name=" PickupLocation"
-                        value={foodDetails?.PickupLocation}
-                        readOnly
-                        type="text"
-                    />
-                    <label className="label">
-                        <span className="font-bold"> Expire Date</span>
-                    </label>
-                    <input
-                        className="input input-bordered join-item w-full mb-4"
-                        name="  ExpireDate"
-                        value={foodDetails?.date}
-                        readOnly
-                    />
+                        <label className="label">
+                            <span className="font-bold"> Pickup Location</span>
+                        </label>
+                        <input
+                            className="input input-bordered join-item w-full mb-4"
+                            name=" PickupLocation"
+                            value={foodDetails?.PickupLocation}
+                            readOnly
+                            type="text"
+                        />
+                        <label className="label">
+                            <span className="font-bold"> Expire Date</span>
+                        </label>
+                        <input
+                            className="input input-bordered join-item w-full mb-4"
+                            name="  ExpireDate"
+                            value={foodDetails?.date}
+                            readOnly
+                        />
 
                     </div>
                     <div>
-                    <label className="label">
-                        <span className="font-bold"> Additional Notes </span>
-                    </label>
-                    <input
-                        className="input input-bordered join-item w-full mb-4"
-                        name="AdditionalNotes"
-                        placeholder="Additional Notes"
-                        type="text"
-                        
-                    />
+                        <label className="label">
+                            <span className="font-bold"> Additional Notes </span>
+                        </label>
+                        <input
+                            className="input input-bordered join-item w-full mb-4"
+                            name="AdditionalNotes"
+                            // placeholder="Additional Notes"
+                            defaultValue={foodDetails?.AdditionalNotes}
+                            // value={foodDetails.AdditionalNotes}
+                            type="text"
+
+                        />
                     </div>
-                    <input type="submit" 
-className="btn mt-3 w-full bg-[#00ffa6]"
-                    value="Requesting Food"
+                    <input type="submit"
+                        className="btn mt-3 w-full bg-[#00ffa6]"
+                        value="Requesting Food"
                     />
                     {/* <input ></input> */}
                 </form>
-                
+
             </div>
 
         </div>
