@@ -11,6 +11,9 @@ import AvailableFoods from "../Component/AvailableFoods/AvailableFoods";
 import ManageMyFoods from "../Component/ManageMyFoods/ManageMyFoods";
 import UpdatePage from "../Component/UpdatePage/UpdatePage";
 
+import PrivateRoute from "../Component/PrivateRoute/PrivateRoute";
+import Myrequest from "../Component/MyRequest/Myrequest";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,8 +23,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Homes></Homes>,
-        loader:()=>fetch(`http://localhost:5000/foodSharePlusSarver`)
-        
+        loader: () => fetch(`http://localhost:5000/foodSharePlusSarver`)
+
       },
       {
         path: "/login",
@@ -31,24 +34,29 @@ const router = createBrowserRouter([
         element: <Registration></Registration>
       },
       {
-        path:"/AddFood",
-        element:<AddFood></AddFood>
+        path: "/AddFood",
+        element: <AddFood></AddFood>
       },
       {
-        path:"/FoodDetails/:id",
-        element:<FoodDetails></FoodDetails>
+        path: "/FoodDetails/:id",
+        element: <FoodDetails></FoodDetails>
       },
-      {path:"/AvailableFoods",
-      element:<AvailableFoods></AvailableFoods>
+      {
+        path: "/AvailableFoods",
+        element: <AvailableFoods></AvailableFoods>
 
       },
       {
-        path:"/ManageMyFoods",
-        element:<ManageMyFoods></ManageMyFoods>
+        path: "/ManageMyFoods",
+        element: (<PrivateRoute><ManageMyFoods></ManageMyFoods></PrivateRoute>)
       },
       {
-        path:"/updatePostManage/:id",
-        element:<UpdatePage></UpdatePage>
+        path: "/updatePostManage/:id",
+        element: <UpdatePage></UpdatePage>
+      },
+      {
+        path: "/MyFoodRequest",
+        element:<PrivateRoute><Myrequest></Myrequest></PrivateRoute>
       }
     ]
 

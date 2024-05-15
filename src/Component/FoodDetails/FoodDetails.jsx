@@ -22,12 +22,14 @@ const FoodDetails = () => {
         const form = e.target;
         const AdditionalNotes = form.AdditionalNotes.value;
         const RequestDate = form.RequestDate.value;
+        const FoodStatus = form.FoodStatus.value;
         const requesrUseremail = user ? user.email : "Unknown";
 
         const updatenotes = {
             AdditionalNotes,
             RequestDate,
-            requesrUseremail
+            requesrUseremail,
+            FoodStatus
 
         }
         console.log(AdditionalNotes,
@@ -225,6 +227,19 @@ const FoodDetails = () => {
                             readOnly
                         />
 
+                    </div>
+                    <div>
+                        <label className="label">
+                            <span className="font-bold"> Status </span>
+                        </label>
+                        <input
+                            className="input input-bordered join-item w-full mb-4"
+                            name="FoodStatus"
+                            
+                            value={"request"}
+                            type="text"
+
+                        />
                     </div>
                     <div>
                         <label className="label">
