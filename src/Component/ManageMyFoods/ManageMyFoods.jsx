@@ -84,7 +84,7 @@ const ManageMyFoods = () => {
                                         </td>
                                         <td className="px-3 py-2">
                                             
-                                            <p className="dark:text-gray-600">{p?.FoodQuality}</p>
+                                            <p className="dark:text-gray-600">{p?.FoodStatus}</p>
                                         </td>
                                         <td className="px-3 py-2">
                                         
