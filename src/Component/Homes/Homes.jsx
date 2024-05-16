@@ -23,6 +23,7 @@ const Homes = () => {
         <div>
             <Helmet><title>Home</title></Helmet>
             <Banner></Banner>
+            
             <div className=" mt-5  grid lg:grid-cols-3 gap-10 mx-5 md:grid-cols-2 ">
                 {featuredFoods.map(food => (
                     <div key={food._id}>

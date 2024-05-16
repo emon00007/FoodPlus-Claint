@@ -37,10 +37,10 @@ const AvailableFoods = () => {
         <div>
             <Helmet><title>AvilableFood</title></Helmet>
             <div className="flex mx-5 justify-between">
-                <div >
+                <div  className="items-center ">
                     
                  {
-                    layOut?<TfiLayoutGrid3 className="text-xl" onClick={handelLayOut} />:
+                    layOut?<div className="flex gap-2 items-center"><TfiLayoutGrid3 className="text-xl" onClick={handelLayOut} /><span>LayOut</span></div>:
                     <TfiLayoutGrid3Alt className="text-xl" onClick={handelLayOut}/>
                  }
                 </div>
