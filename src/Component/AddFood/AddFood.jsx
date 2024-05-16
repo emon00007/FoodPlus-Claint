@@ -3,9 +3,11 @@ import { Helmet } from "react-helmet";
 import { AuthContext } from "../../Authprovider/Authprovider";
 import swal from "sweetalert";
 
+
 const AddFood = () => {
     const { user } = useContext(AuthContext)
-    console.log(user?.email)
+    // console.log(user?.email)
+    
     const handelAddFood = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -62,7 +64,7 @@ const AddFood = () => {
     return (
 
         <div className="bg-cover bg-no-repeat " style={{backgroundImage: 'url("https://i.ibb.co/Hnjc1bv/gettyimages-1263686908.jpg")'}} >
-            <Helmet>AddFood</Helmet>
+            <Helmet><title>AddFood</title></Helmet>
             <div className=" p-10  dark:text-white">
                 <form onSubmit={handelAddFood} className="bg-transparent  bg-white bg-opacity-50 shadow-lg rounded-lg mt-8 p-4">
                     <h1 className="font-bold text-4xl text-center ">

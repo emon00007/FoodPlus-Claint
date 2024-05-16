@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import { HiOutlineMailOpen } from "react-icons/hi";
 import { AuthContext } from "../../Authprovider/Authprovider";
 import moment from 'moment';
 import { toast } from "react-toastify";
 import swal from "sweetalert";
+import { Helmet } from "react-helmet";
 
 
 const FoodDetails = () => {
@@ -53,11 +54,11 @@ const FoodDetails = () => {
                     text: "Your request confirmed",
                     icon: "success",
                     confirmButtonText: "Continue",
-                    
+
                 })
-                
+
             })
-            navigate('/')
+        navigate('/')
         e.target.reset()
     }
 
@@ -73,7 +74,7 @@ const FoodDetails = () => {
     return (
 
         <div>
-
+            <Helmet><title>FoodDetails</title></Helmet>
             <div className="flex items-center md:flex-row flex-col gap-2 ">
                 <div className="w-1/2">
                     <img className="md:w-[400px] mx-auto rounded-2xl shadow-2xl sh" src={foodDetails?.FoodPhotoUrl} alt="" />
@@ -230,7 +231,7 @@ const FoodDetails = () => {
                         <input
                             className="input input-bordered join-item w-full mb-4"
                             name="FoodStatus"
-                            
+
                             value={"request"}
                             type="text"
 

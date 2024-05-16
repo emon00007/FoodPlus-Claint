@@ -2,6 +2,7 @@ import { useContext } from "react";
 import swal from "sweetalert";
 import { AuthContext } from "../../Authprovider/Authprovider";
 import { useNavigate, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const UpdatePage = () => {
     const navigate = useNavigate()
@@ -58,6 +59,7 @@ const UpdatePage = () => {
     }
     return (
         <div>
+            <Helmet><title>UpdatePage</title></Helmet>
              <div className=" p-10">
                 <form onSubmit={handelUpdate} className="bg-[#FFFF] shadow-lg rounded-lg mt-8 p-4">
                     <h1 className="font-bold text-4xl text-center ">

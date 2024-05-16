@@ -7,10 +7,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import app from "../../Firebase/Firebase";
 import { AuthContext } from "../../Authprovider/Authprovider";
+import axios from "axios";
 
 const LogIn = () => {
     const navigate =useNavigate()
-    const {signIn}=useContext(AuthContext)
+    const {signIn,user}=useContext(AuthContext)
     const auth = getAuth(app)
     const googProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
@@ -28,7 +29,15 @@ const LogIn = () => {
           .then(result => {
             toast.success("Login successful!");
             console.log(result.user)
-            navigate(location?.state?location.state:"/")
+            
+            axios.post('http://localhost:5000/jwt',user,{withCredentials:true})
+            .then(res=>{
+              console.log(res.data)
+              if(res.data.success){
+                navigate(location?.state?location.state:"/")
+              }
+              
+            })
           })
           .catch(error => {
             console.error(error)

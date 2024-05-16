@@ -3,6 +3,7 @@ import { AuthContext } from "../../Authprovider/Authprovider";
 import { Link } from "react-router-dom";
 import { TfiLayoutGrid3 } from "react-icons/tfi";
 import { TfiLayoutGrid3Alt } from "react-icons/tfi";
+import { Helmet } from "react-helmet";
 const AvailableFoods = () => {
     const { user } = useContext(AuthContext)
     const [available, setAvailable] = useState([])
@@ -22,7 +23,7 @@ const AvailableFoods = () => {
         setSortByDate(event.target.value);
     };
     useEffect(() => {
-        fetch(`http://localhost:5000/myFoodRequest/${user?.email}`)
+        fetch(`http://localhost:5000/AvailableFoods`)
             .then(res => res.json())
             .then(data => {
                 let sortedData = [...data];
@@ -34,8 +35,10 @@ const AvailableFoods = () => {
     }, [user, sortByDate]);
     return (
         <div>
+            <Helmet><title>AvilableFood</title></Helmet>
             <div className="flex mx-5 justify-between">
-                <div>
+                <div >
+                    
                  {
                     layOut?<TfiLayoutGrid3 className="text-xl" onClick={handelLayOut} />:
                     <TfiLayoutGrid3Alt className="text-xl" onClick={handelLayOut}/>

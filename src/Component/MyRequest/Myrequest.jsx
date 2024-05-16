@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 // import { useParams } from "react-router-dom";
 import { AuthContext } from "../../Authprovider/Authprovider";
+import { Helmet } from "react-helmet";
 
 
 const Myrequest = () => {
@@ -11,12 +12,13 @@ const Myrequest = () => {
             .then(res => res.json())
             .then(data => {
                 setFoodrequest(data);
-                console.log(data);
+                // console.log(data);
             });
     }, [user]);
     return (
 
         <div>
+            <Helmet><title>MyRequest</title></Helmet>
             
             <div className=" p-2 lg:mx-auto lg:container md:container sm:p-4 dark:text-gray-800">
                 <h2 className="mb-4 text-2xl font-semibold leading-tight">Contacts</h2>

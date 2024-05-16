@@ -2,6 +2,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import Banner from "../Banner/Banner";
 import AboutUs from "../AboutUs/AboutUs";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 
 
 const Homes = () => {
@@ -18,6 +19,7 @@ const Homes = () => {
     }, []);
     return (
         <div>
+            <Helmet><title>Home</title></Helmet>
             <Banner></Banner>
             <div className=" mt-5  grid lg:grid-cols-3 gap-5 mx-5 md:grid-cols-2 ">
                 {featuredFoods.map(food => (

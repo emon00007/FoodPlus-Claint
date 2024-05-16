@@ -35,7 +35,7 @@ const ManageMyFoods = () => {
     }
     return (
         <div >
-            <Helmet>ManageMyFoodList</Helmet>
+            <Helmet><title>ManageMyFoodList</title></Helmet>
             <div className=" p-2 lg:mx-auto lg:container md:container sm:p-4 dark:text-gray-800">
                 <h2 className="mb-4 text-2xl font-semibold leading-tight">Contacts</h2>
                 <div className="overflow-x-auto">
