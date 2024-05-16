@@ -1,5 +1,5 @@
 
-
+import { MdOutlineMail } from "react-icons/md";
 const Footer = () => {
     return (
         <footer className="px-4 divide-y dark:bg-gray-100 dark:text-gray-800">
@@ -8,26 +8,19 @@ const Footer = () => {
                 <a rel="noopener noreferrer" href="#" className="flex justify-center space-x-3 lg:justify-start">
                     <div className="flex items-center justify-center w-12 h-12 rounded-full dark:bg-violet-600">
                         <img src="https://i.ibb.co/Jt6Vk51/foodsharegr-logo.jpg" alt="" />
+                        
                     </div>
                     <span className="self-center text-2xl font-semibold">FoodShare Plus</span>
+                    
                 </a>
             </div>
             <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
                 <div className="space-y-3">
-                    <h3 className="tracking-wide uppercase dark:text-gray-900">Product</h3>
+                    <h3 className="tracking-wide uppercase dark:text-gray-900">Contact</h3>
                     <ul className="space-y-1">
-                        <li>
-                            <a rel="noopener noreferrer" href="#">Features</a>
-                        </li>
-                        <li>
-                            <a rel="noopener noreferrer" href="#">Integrations</a>
-                        </li>
-                        <li>
-                            <a rel="noopener noreferrer" href="#">Pricing</a>
-                        </li>
-                        <li>
-                            <a rel="noopener noreferrer" href="#">FAQ</a>
-                        </li>
+                        
+                        <p>emonsheikh930@gmail.com</p>
+                    <p> 01918992228</p>
                     </ul>
                 </div>
                 <div className="space-y-3">
@@ -77,7 +70,7 @@ const Footer = () => {
                 </div>
             </div>
         </div>
-        <div className="py-6 text-sm text-center dark:text-gray-600">© 1968 Company Co. All rights reserved.</div>
+        <div className="py-6 text-sm text-center dark:text-gray-600">© 2008 Company Co. All rights reserved.</div>
     </footer>
     );
 };

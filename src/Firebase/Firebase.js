@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBqR6--pz3Yx02ogAhdUHE1Z6XGDFCP26s",
-  authDomain: "food-share-plus.firebaseapp.com",
-  projectId: "food-share-plus",
-  storageBucket: "food-share-plus.appspot.com",
-  messagingSenderId: "911312522553",
-  appId: "1:911312522553:web:3ce3f46ca2128e61a56ce8"
+  apiKey:import.meta.env.VITE_apiKey,
+  authDomain:import.meta.env.VITE_authDomain,
+  projectId:import.meta.env.VITE_projectId,
+  storageBucket:import.meta.env.VITE_storageBucket,
+  messagingSenderId:import.meta.env.VITE_messagingSenderId,
+  appId:import.meta.env.VITE_appId 
 };
 
 // Initialize Firebase

@@ -3,6 +3,8 @@ import Banner from "../Banner/Banner";
 import AboutUs from "../AboutUs/AboutUs";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import Contactss from "../Contacts/Contactss";
+import { motion } from "framer-motion"
 
 
 const Homes = () => {
@@ -21,9 +23,10 @@ const Homes = () => {
         <div>
             <Helmet><title>Home</title></Helmet>
             <Banner></Banner>
-            <div className=" mt-5  grid lg:grid-cols-3 gap-5 mx-5 md:grid-cols-2 ">
+            <div className=" mt-5  grid lg:grid-cols-3 gap-10 mx-5 md:grid-cols-2 ">
                 {featuredFoods.map(food => (
                     <div key={food._id}>
+                        <motion.div whileHover={{scale:1.1}}>
                         <div className="card card-compact  bg-base-100 shadow-xl">
                             <figure><img className="w-64 h-64 rounded-lg " src={food?.FoodPhotoUrl} alt="Shoes" /></figure>
                             <div className="card-body">
@@ -53,12 +56,14 @@ const Homes = () => {
                                 </div>
                             </div>
                         </div>
+                        </motion.div>
                     </div>
                 ))}
                   
             </div>
             <div className="text-center my-10"><Link to="/AvailableFoods" className="btn bg-[#00ffa6]">ShowAll button</Link></div>
             <AboutUs></AboutUs>
+            <Contactss></Contactss>
         </div>
 
     );
