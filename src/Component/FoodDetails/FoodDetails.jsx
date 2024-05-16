@@ -36,7 +36,7 @@ const FoodDetails = () => {
         console.log(AdditionalNotes,
             RequestDate
         )
-        fetch(`http://localhost:5000/updatePost/${id}`, {
+        fetch(`https://food-share-plus-server.vercel.app/updatePost/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -64,7 +64,7 @@ const FoodDetails = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/FoodDetails/${id}`)
+        fetch(`https://food-share-plus-server.vercel.app/FoodDetails/${id}`)
             .then(res => res.json())
             .then(data => {
                 setFoodDetails(data);

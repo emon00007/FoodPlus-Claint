@@ -34,7 +34,7 @@ const UpdatePage = () => {
             time,
             date
         };
-        fetch(`http://localhost:5000/updatePostManage/${id}`, {
+        fetch(`https://food-share-plus-server.vercel.app/updatePostManage/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

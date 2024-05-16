@@ -10,14 +10,14 @@ const ManageMyFoods = () => {
     const [item, setItem] = useState([])
     const [control, setcontrol] = useState(false)
     useEffect(() => {
-        fetch(`http://localhost:5000/ManageMyFoods/${user?.email}`)
+        fetch(`https://food-share-plus-server.vercel.app/ManageMyFoods/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setItem(data)
             })
     }, [user, control])
     const handelDelete = (id) => {
-        fetch(`http://localhost:5000/delete/${id}`, {
+        fetch(`https://food-share-plus-server.vercel.app/delete/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())

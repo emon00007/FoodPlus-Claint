@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Homes></Homes>,
-        loader: () => fetch(`http://localhost:5000/foodSharePlusSarver`)
+        loader: () => fetch(`https://food-share-plus-server.vercel.app/foodSharePlusSarver`)
 
       },
       {

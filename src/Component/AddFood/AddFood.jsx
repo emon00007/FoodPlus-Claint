@@ -38,7 +38,7 @@ const AddFood = () => {
             time,
             date
         };
-        fetch('http://localhost:5000/foodSharePlusSarver', {
+        fetch('https://food-share-plus-server.vercel.app/foodSharePlusSarver', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

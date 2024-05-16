@@ -23,7 +23,7 @@ const AvailableFoods = () => {
         setSortByDate(event.target.value);
     };
     useEffect(() => {
-        fetch(`http://localhost:5000/AvailableFoods`)
+        fetch(`https://food-share-plus-server.vercel.app/AvailableFoods`)
             .then(res => res.json())
             .then(data => {
                 let sortedData = [...data];
