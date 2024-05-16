@@ -1,12 +1,20 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Authprovider/Authprovider";
 import { Link } from "react-router-dom";
-
+import { TfiLayoutGrid3 } from "react-icons/tfi";
+import { TfiLayoutGrid3Alt } from "react-icons/tfi";
 const AvailableFoods = () => {
     const { user } = useContext(AuthContext)
     const [available, setAvailable] = useState([])
     const [searchOption, setSearchOption] = useState('')
     const [sortByDate, setSortByDate] = useState(false);
+    const [layOut,setLayOut]=useState(true)
+
+
+    const handelLayOut = ()=>{
+        setLayOut(!layOut)
+    }
+
     const handleSearchInputChange = (event) => {
         setSearchOption(event.target.value);
     };
@@ -26,9 +34,15 @@ const AvailableFoods = () => {
     }, [user, sortByDate]);
     return (
         <div>
-            <div className="flex justify-end">
+            <div className="flex mx-5 justify-between">
+                <div>
+                 {
+                    layOut?<TfiLayoutGrid3 className="text-xl" onClick={handelLayOut} />:
+                    <TfiLayoutGrid3Alt className="text-xl" onClick={handelLayOut}/>
+                 }
+                </div>
                 <input
-                    className="p-3 mr-5  border border-black rounded-3xl"
+                    className="p-3   border border-black rounded-3xl"
                     type="text"
                     placeholder="Search food items"
                     value={searchOption}
@@ -46,7 +60,7 @@ const AvailableFoods = () => {
                 </select>
             </div>
 
-            <div className=" mt-5  grid lg:grid-cols-3 gap-5 mx-5 md:grid-cols-2 ">
+            <div className= {`mt-5  grid  gap-5 mx-5 ${layOut?'md:grid-cols-3':'md:grid-cols-2'}`} >
 
 
                 {
