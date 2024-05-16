@@ -9,7 +9,7 @@ const AboutUs = () => {
         <div className="flex flex-col lg:flex-row justify-between gap-8">
             <div className="w-full lg:w-5/12 flex flex-col justify-center">
                 <h1 className="text-3xl lg:text-4xl font-bold leading-9 text-gray-800 pb-4">About Us</h1>
-                <p className="font-normal text-base leading-6 text-gray-600 ">We want to introduce you and our customers to the most beautiful places in the world. Lets discover the new world. Now is the time to spread yourself out. Why get out now?</p>
+                <p className="font-normal text-base leading-6 text-gray-600 ">Our Food Sharing site is a vibrant online community dedicated to fostering connections through the joy of food. Founded with a passion for reducing food waste and promoting sustainable practices, we strive to create a platform where individuals can share surplus food with those in need or simply connect over a shared love of cooking and sharing meals. Our team is committed to building a welcoming and inclusive environment where everyone feels empowered to participate and contribute. Join us on our mission to make a positive impact on communities and the planet, one meal at a time.</p>
             </div>
             <div className="w-full lg:w-8/12 ">
                 <img className="w-full h-full" src="https://i.ibb.co/2j5kP45/volunteer-feeding-poor-homeless-people-outdoors-vector-44469239.jpg" alt="A group of People" />
@@ -19,8 +19,8 @@ const AboutUs = () => {
         
         <div className="flex lg:flex-row flex-col justify-between gap-8 pt-12">
             <div className="w-full lg:w-5/12 flex flex-col justify-center">
-                <h1 className="text-3xl lg:text-4xl font-bold leading-9 text-gray-800 pb-4">Our Client</h1>
-                <p className="font-normal text-base leading-6 text-gray-600 ">A truest client is not just a consumer of our services but a trusted partner in our journey. They are the embodiment of our values, demonstrating integrity, transparency, and collaboration in every interaction. They provide honest feedback that helps us continually improve our products and services. We prioritize their needs and strive to exceed their expectations, building a relationship based on mutual respect and trust. Together, we navigate challenges, celebrate successes, and work towards shared goals, knowing that their success is our success</p>
+                <h1 className="text-3xl lg:text-4xl font-bold leading-9 text-gray-800 pb-4">Our Donner</h1>
+                <p className="font-normal text-base leading-6 text-gray-600 ">As a Food Donor on our Food Sharing site, you play a vital role in reducing food waste and supporting those in need. By generously contributing surplus food items, you're helping to ensure that perfectly good food doesn't go to waste and instead reaches individuals and families who can benefit from it. Whether you're a restaurant, grocery store, or individual with extra food to spare, your donations make a meaningful difference in the lives of others. Join our community of Food Donors today and be a part of the solution to food insecurity while also promoting sustainability and compassion. Together, we can make a positive impact through the simple act of sharing.</p>
             </div>
             <div data-aos="flip-left"
  data-aos-easing="ease-out-cubic"

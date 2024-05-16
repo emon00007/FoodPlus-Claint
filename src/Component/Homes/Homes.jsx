@@ -1,17 +1,26 @@
 import { Link, useLoaderData } from "react-router-dom";
 import Banner from "../Banner/Banner";
 import AboutUs from "../AboutUs/AboutUs";
+import { useEffect, useState } from "react";
 
 
 const Homes = () => {
     const foods = useLoaderData().slice(0, 6);
-    console.log(foods)
     
+    const [featuredFoods, setFeaturedFoods] = useState([]);
+    useEffect(() => {
+        
+        const sortedFoods = [...foods].sort((a, b) => b.FoodQuantity - a.FoodQuantity);
+        
+        const topFeaturedFoods = sortedFoods.slice(0, 6);
+
+        setFeaturedFoods(topFeaturedFoods);
+    }, []);
     return (
         <div>
             <Banner></Banner>
             <div className=" mt-5  grid lg:grid-cols-3 gap-5 mx-5 md:grid-cols-2 ">
-                {foods.map(food => (
+                {featuredFoods.map(food => (
                     <div key={food._id}>
                         <div className="card card-compact  bg-base-100 shadow-xl">
                             <figure><img className="w-64 h-64 rounded-lg " src={food?.FoodPhotoUrl} alt="Shoes" /></figure>
