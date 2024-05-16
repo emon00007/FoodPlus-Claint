@@ -2,7 +2,8 @@ import { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { AuthContext } from "../../Authprovider/Authprovider";
 import swal from "sweetalert";
-
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddFood = () => {
     const { user } = useContext(AuthContext)
@@ -48,6 +49,7 @@ const AddFood = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                toast.success("Add Food successful!");
                 if (data.insertedId)
                     swal({
                         title: "success",

@@ -3,7 +3,8 @@ import swal from "sweetalert";
 import { AuthContext } from "../../Authprovider/Authprovider";
 import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
-
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 const UpdatePage = () => {
     const navigate = useNavigate()
     const { user } = useContext(AuthContext)
@@ -44,6 +45,7 @@ const UpdatePage = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                toast.success("Update successful!");
                 if (data.insertedId)
                     swal({
                         title: "success",

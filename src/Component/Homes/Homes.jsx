@@ -55,8 +55,9 @@ const Homes = () => {
                         </div>
                     </div>
                 ))}
-
+                  
             </div>
+            <div className="text-center my-10"><Link to="/AvailableFoods" className="btn bg-[#00ffa6]">ShowAll button</Link></div>
             <AboutUs></AboutUs>
         </div>
 
